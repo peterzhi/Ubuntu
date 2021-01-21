@@ -1,0 +1,11 @@
+很久没有登录过账户之后假如忘记密码的操作步骤：
+
+重启虚拟机，长按“Esc”或“Shift”键进入GNU GRUB模式；
+选择第二项：Ubuntu高级选项；
+进入后选择Ubuntu recovery mode的选项;
+进入系统BIOS界面，找到root项，点击Enter键；
+使用passwd命令重置root密码，设置完毕后输入reboot命令重启电脑；
+然后重复第3-6步的操作；
+输入root密码后使用“passwd 用户名”命令重置对应账户的密码；
+敲击Enter键后重新输入新密码；
+设置完毕后输入reboot命令重启电脑即可。
