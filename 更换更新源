@@ -1,0 +1,31 @@
+用apt-get update更新失败，报错”Failed to fetch 404 Not Found”
+解决方法为讲/etc/apt/sources.list路径下的源替换为新版本仓库的源。
+
+备份原来的更新源
+cp /etc/apt/sources.list /etc/apt/sources.list.backup
+如果提示权限不够就输入下面两行，先进入到超级用户，再备份
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
+
+打开sources.list (这就是存放更新源的文件)
+sudo vim /etc/apt/sources.list
+
+将下面所有内容复制，粘贴并覆盖sources.list文件中的所有内容
+#deb包
+deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse  
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted universe multiverse  
+deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted universe multiverse  
+deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse  
+##测试版源  
+deb http://mirrors.aliyun.com/ubuntu/ xenial-proposed main restricted universe multiverse  
+# 源码  
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse  
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted universe multiverse  
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted universe multiverse  
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse  
+##测试版源  
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-proposed main restricted universe multiverse  
+# Canonical 合作伙伴和附加  
+deb http://archive.canonical.com/ubuntu/ xenial partner
+
+生效更新源
+sudo apt-get update
