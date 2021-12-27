@@ -1,0 +1,67 @@
+一、无法正常安装sshopen-server导致ssh远程连接的22端口无法开放(问题描述)：
+有一些软件包无法被安装。如果您用的是 unstable 发行版，这也许是
+因为系统无法达到您要求的状态造成的。该版本中可能会有一些您需要的软件
+包尚未被创建或是它们已被从新到(Incoming)目录移出。
+下列信息可能会对解决问题有所帮助：
+
+下列软件包有未满足的依赖关系：
+ openssh-server : 依赖: openssh-client (= 1:7.2p2-4ubuntu2.10)
+                  依赖: openssh-sftp-server 但是它将不会被安装
+E: 无法修正错误，因为您要求某些软件包保持现状，就是它们破坏了软件包间的依赖关系。
+
+解决方法：
+openssh-server是依赖于openssh-client,自带的openssh-client与要安装的openssh-server依赖版本不同,
+这里所依赖的版本是1:7.2p2-4ubuntu2.10.
+1.要安装对应版本的openssh-clien,来覆盖掉ubuntu自带的openssh-clien：
+sudo apt-get install openssh-client=1:7.2p2-4ubuntu2.10
+
+2.覆盖安装执行完成之后，再次安装openssh-server就可成功安装：
+sudo apt-get install openssh-server
+
+3.通过netstat -tnl命令查看各个端口的监听情况
+~$ netstat -tnl
+
+
+4.用ifconfig查看虚拟机ip网址
+~$ ifconfig
+
+5.service sshd start启动ssh服务，sudo systemctl enable ssh设置开机自启ssh服务。
+
+6.ssh localhost
+
+7.lsof -i:22查看服务器22端口是否启动
+
+
+二、VMware该虚拟机似乎正在使用中。如果该虚拟机未在使用，请按“获取所有权(T)”按钮获取它的所有权：
+解决方法：到你的安装目录找文件夹后缀为.vmx.lck的文件夹，将所有的其改名(末尾添加_backup)或者删除掉。
+
+
+三、解决虚拟机黑屏方法：
+1.以管理员身份运行 命令提示符 ；
+2.依次执行下面5个命令：
+netsh winsock reset
+
+net stop VMAuthdService
+
+net start VMAuthdService
+
+net stop VMwareHostd
+
+net start VMwareHostd
+
+
+四、如果没有VMnet1和VMnet8网络：
+解决方法：
+打开计算机管理；
+找到Device Install Service和Device setup Manager两个服务；
+右键、属性、将他们全部设置为自动；
+打开VMware的虚拟网络编辑器，打开更改设置，修改VMnet1（主机模式 ），修改VMnet8（NAT模式）；
+
+若还未出现网路：
+下载CCleaner(个人版)，安装完毕后在注册表中全部勾选，点击扫描问题，修复，不备份，全部修复；
+修复VMware，重启即可；
+然后重新查看网络适配器看看是否出现VMnet1和VMnet8
+
+
+五、xshell升级/更换电脑：
+保存xshell登录的配置信息：导出信息并保存至本地备份，需要时导入并覆盖即可。
