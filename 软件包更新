@@ -6,3 +6,4 @@ sudo apt -f install #
 “dpkg:处理归档 /var/cache/apt/archives/XXX(--unpack)时出错”的解决方法+ubuntu软件包损坏修复:
 先运行：sudo dpkg -i --force-overwrite /var/cache/apt/archives/xxx.deb
 再运行：sudo apt-get -f install
+
