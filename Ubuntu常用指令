@@ -4,3 +4,6 @@ sudo apt-get clean                    清理所有软件缓存
 sudo apt-get autoremove             删除系统不再使用的孤立软件
 这三个命令主要清理升级缓存以及无用包的。
 
+软件包损坏恢复，解决软件包异常：
+sudo apt-get check #检查是否有软件包损坏
+sudo apt-get -f install #尝试着修复存在问题的软件包
