@@ -1,3 +1,5 @@
+错误：ModuleNotFoundError: No module named 'pip'
+
 当提示更新pip时更新错误，导致pip无法找到：
 解决方法：
 1.执行 python -m ensurepip；
