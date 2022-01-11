@@ -1,1 +1,8 @@
+“dpkg删除报subprocess installed pre-removal script returned error exit status 5”的解决办法：
+主要是有些残留文件没有删除掉,在目录/var/lib/dpkg/info下手动删除即可。
+sudo rm /var/lib/dpkg/info/XXX* #删除对应脚本
+sudo apt -f install #
 
+“dpkg:处理归档 /var/cache/apt/archives/XXX(--unpack)时出错”的解决方法+ubuntu软件包损坏修复:
+先运行：sudo dpkg -i --force-overwrite /var/cache/apt/archives/xxx.deb
+再运行：sudo apt-get -f install
