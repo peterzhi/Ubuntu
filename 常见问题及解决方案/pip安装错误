@@ -1,0 +1,4 @@
+当提示更新pip时更新错误，导致pip无法找到：
+解决方法：
+1.执行 python -m ensurepip；
+2.再执行 python -m pip install --user --upgrade pip
